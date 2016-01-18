@@ -5,21 +5,24 @@ namespace app\models;
 use Yii;
 
 /**
- * This is the model class for table "test".
+ * This is the model class for table "Parqueo".
  *
  * @property integer $id
+ * @property string $parqueo
+ * @property integer $torre_id
  * @property integer $residente_id
  *
- * @property Residente $residente
+ * @property Torre $residente
+ * @property Residente $residente0
  */
-class Test extends \yii\db\ActiveRecord
+class Parqueo extends \yii\db\ActiveRecord
 {
     /**
      * @inheritdoc
      */
     public static function tableName()
     {
-        return 'test';
+        return 'Parqueo';
     }
 
     /**
@@ -28,7 +31,8 @@ class Test extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['residente_id'], 'integer']
+            [['torre_id', 'residente_id'], 'integer'],
+            [['parqueo'], 'string', 'max' => 255]
         ];
     }
 
@@ -39,6 +43,8 @@ class Test extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
+            'parqueo' => 'Parqueo',
+            'torre_id' => 'Torre ID',
             'residente_id' => 'Residente ID',
         ];
     }
@@ -47,6 +53,14 @@ class Test extends \yii\db\ActiveRecord
      * @return \yii\db\ActiveQuery
      */
     public function getResidente()
+    {
+        return $this->hasOne(Torre::className(), ['id' => 'residente_id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getResidente0()
     {
         return $this->hasOne(Residente::className(), ['id' => 'residente_id']);
     }
