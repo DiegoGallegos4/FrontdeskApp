@@ -17,7 +17,7 @@ class m160116_154951_create_preferencia extends Migration
             'apoyo_compras' => $this->string(),
         ]);
         
-        $this->addForeignKey('fk_Residente_id', 'Preferencia', 'residente_id', 'Residente', 'id');
+        $this->addForeignKey('fk_PreferenciaResidente_id', 'Preferencia', 'residente_id', 'Residente', 'id');
     }
 
     public function down()

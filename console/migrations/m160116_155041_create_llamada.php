@@ -14,7 +14,7 @@ class m160116_155041_create_llamada extends Migration
             'telefono' => $this->string(),
         ]);
        
-       $this->addForeignKey('fk_Residente_id', 'Llamada', 'residente_id', 'Residente', 'id');
+       $this->addForeignKey('fk_LlamadaResidente_id', 'Llamada', 'residente_id', 'Residente', 'id');
     }
 
     public function down()

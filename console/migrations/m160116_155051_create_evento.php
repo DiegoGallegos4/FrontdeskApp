@@ -17,9 +17,7 @@ class m160116_155051_create_evento extends Migration
             'area_id' => $this->integer(),
         ]);
         
-        $this->addForeignKey('fk_Residente_id', 'Evento', 'residente_id', 'Residente', 'id');
-        $this->addForeignKey('fk_AreaComun_id', 'Evento', 'area_id', 'AreaComun', 'id');
-        
+        $this->addForeignKey('fk_EventoResidente_id', 'Evento', 'residente_id', 'Residente', 'id');
     }
 
     public function down()

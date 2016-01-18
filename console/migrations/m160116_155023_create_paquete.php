@@ -16,7 +16,7 @@ class m160116_155023_create_paquete extends Migration
             'destino' => $this->string(),
         ]);
         
-        $this->addForeignKey('fk_Residente_id', 'Paquete', 'residente_id', 'Residente', 'id');
+        $this->addForeignKey('fk_PaqueteResidente_id', 'Paquete', 'residente_id', 'Residente', 'id');
         
     }
 

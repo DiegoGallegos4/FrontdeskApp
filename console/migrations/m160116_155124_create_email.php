@@ -14,7 +14,7 @@ class m160116_155124_create_email extends Migration
             'email' => $this->string(),
         ]);
         
-        $this->addForeignKey('fk_Residente_id', 'Email', 'residente_id', 'Residente', 'id');
+        $this->addForeignKey('fk_EmailResidente_id', 'Email', 'residente_id', 'Residente', 'id');
     }
 
     public function down()

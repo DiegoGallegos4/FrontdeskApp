@@ -14,7 +14,7 @@ class m160116_155152_create_aviso extends Migration
             'titulo' => $this->string(),
         ]);
         
-        $this->addForeignKey('fk_user_id', 'Aviso', 'user_id', 'user', 'id');
+        $this->addForeignKey('fk_Avisouser_id', 'Aviso', 'user_id', 'user', 'id');
     }
 
     public function down()

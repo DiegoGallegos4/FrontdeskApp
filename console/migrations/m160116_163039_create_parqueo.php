@@ -14,8 +14,7 @@ class m160116_163039_create_parqueo extends Migration
             'residente_id' => $this->integer(),
         ]);
         
-        $this->addForeignKey('fk_Residente_id', 'Parqueo', 'residente_id', 'Residente', 'id');
-        $this->addForeignKey('fk_Torre_id', 'Parqueo', 'residente_id', 'Torre', 'id');
+        $this->addForeignKey('fk_ParqueoResidente_id', 'Parqueo', 'residente_id', 'Residente', 'id');
     }
 
     public function down()

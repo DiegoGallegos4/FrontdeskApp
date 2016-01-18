@@ -14,8 +14,7 @@ class m160116_163045_create_bodega extends Migration
             'residente_id' => $this->integer(),
         ]);
         
-        $this->addForeignKey('fk_Residente_id', 'Bodega', 'residente_id', 'Residente', 'id');
-        $this->addForeignKey('fk_Torre_id', 'Bodega', 'torre_id', 'Torre', 'id');
+        $this->addForeignKey('fk_BodegaResidente_id', 'Bodega', 'residente_id', 'Residente', 'id');
     }
 
     public function down()

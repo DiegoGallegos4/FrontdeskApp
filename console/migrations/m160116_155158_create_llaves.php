@@ -18,7 +18,7 @@ class m160116_155158_create_llaves extends Migration
             'observaciones' => $this->string(),
         ]);
         
-        $this->addForeignKey('fk_user_id', 'Llave', 'user_id', 'user', 'id');
+        $this->addForeignKey('fk_Llavesuser_id', 'Llave', 'user_id', 'user', 'id');
     }
 
     public function down()

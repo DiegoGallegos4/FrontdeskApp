@@ -14,7 +14,7 @@ class m160116_155032_create_nota extends Migration
             'residente_id' => $this->integer(),
         ]);
         
-        $this->addForeignKey('fk_Residente_id', 'Nota', 'residente_id', 'Residente', 'id');
+        $this->addForeignKey('fk_NotaResidente_id', 'Nota', 'residente_id', 'Residente', 'id');
         
     }
 

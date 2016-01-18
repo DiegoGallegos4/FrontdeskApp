@@ -16,9 +16,10 @@ class m160116_155005_create_empleado_residente extends Migration
             'imagen' => $this->binary(),
         ]);
         
-        $this->addForeignKey('fk_Residente_id', 'EmpleadoResidente', 'residente_id', 'Residente', 'id');
+        $this->addForeignKey('fk_EmpleadoResidente_id', 'EmpleadoResidente', 'residente_id', 'Residente', 'id');
     }
 
+        
     public function down()
     {
         $this->dropTable('EmpleadoResidente');

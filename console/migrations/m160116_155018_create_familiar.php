@@ -15,7 +15,7 @@ class m160116_155018_create_familiar extends Migration
             'apellido' => $this->string(),
         ]);
         
-        $this->addForeignKey('fk_Residente_id', 'Familiar', 'residente_id', 'Residente', 'id');
+        $this->addForeignKey('fk_FamiliarResidente_id', 'Familiar', 'residente_id', 'Residente', 'id');
     }
 
     public function down()
