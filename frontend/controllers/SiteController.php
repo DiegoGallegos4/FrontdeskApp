@@ -7,6 +7,8 @@ use frontend\models\PasswordResetRequestForm;
 use frontend\models\ResetPasswordForm;
 use frontend\models\SignupForm;
 use frontend\models\ContactForm;
+use frontend\models\ResidenteForm;
+use backend\models\Residente;
 use yii\base\InvalidParamException;
 use yii\web\BadRequestHttpException;
 use yii\web\Controller;
@@ -209,5 +211,18 @@ class SiteController extends Controller
         return $this->render('resetPassword', [
             'model' => $model,
         ]);
+    }
+    
+    public function actionResidente() {
+        $model = new ResidenteForm();
+        $residente = new Residente();
+        
+        if($model->load(Yii::$app->request->post()) && $model->validate()){
+            
+            return $this->render('residente',['model' => $model]);
+        }else{
+            return $this->render('residente',['model' => $model]);
+        }
+        
     }
 }
