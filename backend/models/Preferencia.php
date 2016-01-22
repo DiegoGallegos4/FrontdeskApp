@@ -34,8 +34,7 @@ class Preferencia extends \yii\db\ActiveRecord
     {
         return [
             [['residente_id'], 'integer'],
-            [['horario_contacto'], 'safe'],
-            [['tipo_contacto', 'contacto_emergencia', 'tipo_recepcion', 'apoyo_compras'], 'string', 'max' => 255]
+            [['horario_contacto','tipo_contacto', 'contacto_emergencia', 'tipo_recepcion', 'apoyo_compras'], 'string', 'max' => 255]
         ];
     }
 
@@ -46,7 +45,7 @@ class Preferencia extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'residente_id' => 'Residente ID',
+            'residente_id' => 'Residente',
             'tipo_contacto' => 'Tipo Contacto',
             'horario_contacto' => 'Horario Contacto',
             'contacto_emergencia' => 'Contacto Emergencia',

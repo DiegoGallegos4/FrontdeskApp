@@ -10,10 +10,10 @@ use Yii;
  * @property integer $id
  * @property string $bodega
  * @property integer $torre_id
- * @property integer $residente_id
  *
  * @property Torre $torre
- * @property Residente $residente
+ * @property ResidenteBodega[] $residenteBodegas
+ * @property Residente[] $residentes
  */
 class Bodega extends \yii\db\ActiveRecord
 {
@@ -31,7 +31,7 @@ class Bodega extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['torre_id', 'residente_id'], 'integer'],
+            [['torre_id'], 'integer'],
             [['bodega'], 'string', 'max' => 255]
         ];
     }
@@ -44,24 +44,27 @@ class Bodega extends \yii\db\ActiveRecord
         return [
             'id' => 'ID',
             'bodega' => 'Bodega',
-            'torre_id' => 'Torre ID',
-            'residente_id' => 'Residente ID',
+            'torre_id' => 'Torre',
         ];
     }
 
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getTorre()
+    public function getResidenteBodegas()
     {
-        return $this->hasOne(Torre::className(), ['id' => 'torre_id']);
+        return $this->hasMany(ResidenteBodega::className(), ['bodega_id' => 'id']);
     }
 
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getResidente()
+    public function getResidentes()
     {
-        return $this->hasOne(Residente::className(), ['id' => 'residente_id']);
+        return $this->hasMany(Residente::className(), ['id' => 'residente_id'])->viaTable('Residente_Bodega', ['bodega_id' => 'id']);
+    }
+    
+    public function getTorre() {
+        return $this->hasOne(Torre::className(), ['id' => 'torre_id']);
     }
 }

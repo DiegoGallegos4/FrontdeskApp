@@ -11,6 +11,7 @@ use Yii;
  * @property integer $residente_id
  * @property string $nombre
  * @property string $telefono
+ * @property string $mensaje
  *
  * @property Residente $residente
  */
@@ -31,7 +32,7 @@ class Llamada extends \yii\db\ActiveRecord
     {
         return [
             [['residente_id'], 'integer'],
-            [['nombre', 'telefono'], 'string', 'max' => 255]
+            [['nombre', 'telefono','mensaje'], 'string', 'max' => 255]
         ];
     }
 
@@ -42,9 +43,10 @@ class Llamada extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'residente_id' => 'Residente ID',
+            'residente_id' => 'Residente',
             'nombre' => 'Nombre',
             'telefono' => 'Telefono',
+            'mensaje' => 'Mensaje'
         ];
     }
 

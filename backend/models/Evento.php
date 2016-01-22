@@ -50,12 +50,12 @@ class Evento extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'residente_id' => 'Residente ID',
+            'residente_id' => 'Residente',
             'nombre_evento' => 'Nombre Evento',
             'fecha_inicio' => 'Fecha Inicio',
             'fecha_fin' => 'Fecha Fin',
             'contrato' => 'Contrato',
-            'area_id' => 'Area ID',
+            'area_id' => 'Area',
         ];
     }
 

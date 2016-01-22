@@ -43,7 +43,7 @@ class Familiar extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'residente_id' => 'Residente ID',
+            'residente_id' => 'Residente',
             'relacion' => 'Relacion',
             'nombre' => 'Nombre',
             'apellido' => 'Apellido',

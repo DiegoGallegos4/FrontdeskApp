@@ -17,6 +17,7 @@ class m160118_210300_create_control_llave extends Migration
             'observaciones' => $this->string(),
         ]);
     }
+    
 
     public function down()
     {

@@ -45,7 +45,7 @@ class EmpleadoResidente extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'residente_id' => 'Residente ID',
+            'residente_id' => 'Residente',
             'nombre' => 'Nombre',
             'apellido' => 'Apellido',
             'posicion' => 'Posicion',

@@ -9,6 +9,7 @@ use Yii;
  *
  * @property integer $id
  * @property string $nombre
+ * @property string $descripcion
  *
  * @property Evento[] $eventos
  */
@@ -28,7 +29,7 @@ class AreaComun extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['nombre'], 'string', 'max' => 255]
+            [['nombre','descripcion'], 'string', 'max' => 255]
         ];
     }
 
@@ -40,6 +41,7 @@ class AreaComun extends \yii\db\ActiveRecord
         return [
             'id' => 'ID',
             'nombre' => 'Nombre',
+            'descripcion' => 'Descripcion',
         ];
     }
 

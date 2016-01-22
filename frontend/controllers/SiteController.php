@@ -9,6 +9,8 @@ use frontend\models\SignupForm;
 use frontend\models\ContactForm;
 use frontend\models\ResidenteForm;
 use backend\models\Residente;
+use backend\models\Torre;
+use backend\models\Bodega;
 use yii\base\InvalidParamException;
 use yii\web\BadRequestHttpException;
 use yii\web\Controller;
@@ -214,14 +216,35 @@ class SiteController extends Controller
     }
     
     public function actionResidente() {
-        $model = new ResidenteForm();
-        $residente = new Residente();
+        $model = new Residente();
         
         if($model->load(Yii::$app->request->post()) && $model->validate()){
-            
-            return $this->render('residente',['model' => $model]);
+            $model->save();
+            $this->redirect('/site/residente');
         }else{
             return $this->render('residente',['model' => $model]);
+        }
+        
+    }
+    
+    public function actionTorre() {
+        $model = new Torre();
+        if ($model->load(Yii::$app->request->post()) && $model->validate()){
+            $model->save();
+            return $this->render('torre',['model' => $model]);             
+        }else{
+            return $this->render('torre',['model' => $model]); 
+        }
+        
+    }
+    
+    public function actionBodega() {
+        $model = new Bodega();
+        if ($model->load(Yii::$app->request->post()) && $model->validate()){
+            $model->save();
+            return $this->render('bodega',['model' => $model]); 
+        }else{
+            return $this->render('bodega',['model' => $model]); 
         }
         
     }

@@ -42,7 +42,7 @@ class Telefono extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'residente_id' => 'Residente ID',
+            'residente_id' => 'Residente',
             'tipo' => 'Tipo',
             'telefono' => 'Telefono',
         ];

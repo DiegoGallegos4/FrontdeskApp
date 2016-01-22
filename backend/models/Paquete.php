@@ -10,9 +10,9 @@ use Yii;
  * @property integer $id
  * @property integer $residente_id
  * @property string $num_buzon
- * @property string $tipo
  * @property string $fecha
- * @property string $destino
+ * @property string $entregadoPor
+ * @property string $observaciones
  *
  * @property Residente $residente
  */
@@ -34,7 +34,7 @@ class Paquete extends \yii\db\ActiveRecord
         return [
             [['residente_id'], 'integer'],
             [['fecha'], 'safe'],
-            [['num_buzon', 'tipo', 'destino'], 'string', 'max' => 255]
+            [['num_buzon','observaciones','entregado_por'], 'string', 'max' => 255]
         ];
     }
 
@@ -45,11 +45,11 @@ class Paquete extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'residente_id' => 'Residente ID',
+            'residente_id' => 'Residente ',
             'num_buzon' => 'Num Buzon',
-            'tipo' => 'Tipo',
+            'observaciones' => 'Observaciones',
             'fecha' => 'Fecha',
-            'destino' => 'Destino',
+            'entregado_por' => 'Entregado Por',
         ];
     }
 

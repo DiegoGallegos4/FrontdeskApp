@@ -16,6 +16,7 @@ use Yii;
  * @property string $nacionalidad
  * @property string $hobbies
  * @property string $empresa
+ * @property string $nombre_completo
  *
  * @property Bodega[] $bodegas
  * @property Email[] $emails
@@ -51,7 +52,7 @@ class Residente extends \yii\db\ActiveRecord
         return [
             [['fecha_nacimiento'], 'safe'],
             [['imagen'], 'string'],
-            [['nombre', 'apellido', 'estado_civil', 'nacionalidad', 'hobbies', 'empresa'], 'string', 'max' => 255]
+            [['nombre', 'apellido', 'estado_civil', 'nacionalidad', 'hobbies', 'empresa','nombre_completo'], 'string', 'max' => 255]
         ];
     }
 
@@ -70,6 +71,7 @@ class Residente extends \yii\db\ActiveRecord
             'nacionalidad' => 'Nacionalidad',
             'hobbies' => 'Hobbies',
             'empresa' => 'Empresa',
+            'nombre_completo' => 'Nombre Completo',
         ];
     }
 
@@ -150,7 +152,13 @@ class Residente extends \yii\db\ActiveRecord
      */
     public function getPreferencias()
     {
-        return $this->hasMany(Preferencia::className(), ['residente_id' => 'id']);
+        $arr_pref = $this->hasMany(Preferencia::className(), ['residente_id' => 'id'])->select(['*'])->asArray()->all();
+        $prefs = '';
+        foreach($arr_pref as $pref){
+            $prefs.= '<b>Contactarlo por: </b>'.$pref['tipo_contacto'].'<br>'.'<b>Horario para contactarlo: </b>'.$pref['horario_contacto'].'<br>'.'<b>Contacto emergencia: </b>'.$pref['contacto_emergencia'].'<br>'.
+                    '<b>Enviar paquetes a: </b>'.$pref['tipo_recepcion'].'<br>'.'<b>Apoyo para compras o bolsas: </b>'.$pref['apoyo_compras'];
+        }
+        return $prefs;
     }
 
     /**
@@ -190,6 +198,13 @@ class Residente extends \yii\db\ActiveRecord
      */
     public function getTelefonos()
     {
-        return $this->hasMany(Telefono::className(), ['residente_id' => 'id']);
+        $telefonos=$this->hasMany(Telefono::className(), ['residente_id' => 'id'])->select(['telefono','tipo'])->asArray()->all();
+             
+        $n_telefonos='';
+        foreach($telefonos as $telefono) {
+           $n_telefonos.= $telefono['tipo'].' : '.$telefono['telefono'].'<br>';
+        }
+
+        return $n_telefonos;
     }
 }

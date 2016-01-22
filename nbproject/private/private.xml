@@ -3,8 +3,19 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/Users/inmedu/NetBeansProjects/AppResidentes/console/migrations/m160116_155109_create_area_comun.php</file>
-            <file>file:/Users/inmedu/NetBeansProjects/AppResidentes/console/migrations/m160116_155051_create_evento.php</file>
+            <file>file:/Users/inmedu/NetBeansProjects/AppResidentes/backend/models/Preferencia.php</file>
+            <file>file:/Users/inmedu/NetBeansProjects/AppResidentes/frontend/views/preferencia/update.php</file>
+            <file>file:/Users/inmedu/NetBeansProjects/AppResidentes/backend/models/Residente.php</file>
+            <file>file:/Users/inmedu/NetBeansProjects/AppResidentes/frontend/views/evento/create.php</file>
+            <file>file:/Users/inmedu/NetBeansProjects/AppResidentes/frontend/views/preferencia/view.php</file>
+            <file>file:/Users/inmedu/NetBeansProjects/AppResidentes/frontend/views/evento/_form.php</file>
+            <file>file:/Users/inmedu/NetBeansProjects/AppResidentes/frontend/controllers/EmpleadoSearch.php</file>
+            <file>file:/Users/inmedu/NetBeansProjects/AppResidentes/frontend/views/evento/update.php</file>
+            <file>file:/Users/inmedu/NetBeansProjects/AppResidentes/frontend/views/residente/view.php</file>
+            <file>file:/Users/inmedu/NetBeansProjects/AppResidentes/backend/models/EventoVisita.php</file>
+            <file>file:/Users/inmedu/NetBeansProjects/AppResidentes/frontend/controllers/EventoSearch.php</file>
+            <file>file:/Users/inmedu/NetBeansProjects/AppResidentes/backend/models/Evento.php</file>
+            <file>file:/Users/inmedu/NetBeansProjects/AppResidentes/frontend/views/evento/index.php</file>
         </group>
     </open-files>
 </project-private>

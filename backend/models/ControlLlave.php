@@ -14,6 +14,9 @@ use Yii;
  * @property string $fecha_devolucion
  * @property string $forma_autorizacion
  * @property string $observaciones
+ *
+ * @property Empleado $empleado
+ * @property Llave $id
  */
 class ControlLlave extends \yii\db\ActiveRecord
 {
@@ -31,8 +34,7 @@ class ControlLlave extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['llave_id', 'empleado_id'], 'integer'],
-            [['fecha_entrega', 'fecha_devolucion'], 'safe'],
+            [['fecha_entrega', 'fecha_devolucion','llave_id', 'empleado_id'], 'safe'],
             [['forma_autorizacion', 'observaciones'], 'string', 'max' => 255]
         ];
     }
@@ -44,12 +46,24 @@ class ControlLlave extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'llave_id' => 'Llave ID',
-            'empleado_id' => 'Empleado ID',
+            'llave_id' => 'Llave',
+            'empleado_id' => 'Empleado',
             'fecha_entrega' => 'Fecha Entrega',
             'fecha_devolucion' => 'Fecha Devolucion',
             'forma_autorizacion' => 'Forma Autorizacion',
             'observaciones' => 'Observaciones',
         ];
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getEmpleado()
+    {
+        return $this->hasOne(Empleado::className(), ['id' => 'empleado_id']);
+    }
+    
+    public function getLlave(){
+        return $this->hasOne(Llave::className(), ['id' => 'llave_id']);
     }
 }

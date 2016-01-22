@@ -10,10 +10,10 @@ use Yii;
  * @property integer $id
  * @property string $parqueo
  * @property integer $torre_id
- * @property integer $residente_id
  *
- * @property Torre $residente
- * @property Residente $residente0
+ * @property Torre $torre
+ * @property ResidenteParqueo[] $residenteParqueos
+ * @property Residente[] $residentes
  */
 class Parqueo extends \yii\db\ActiveRecord
 {
@@ -31,7 +31,7 @@ class Parqueo extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['torre_id', 'residente_id'], 'integer'],
+            [['torre_id'], 'integer'],
             [['parqueo'], 'string', 'max' => 255]
         ];
     }
@@ -45,23 +45,30 @@ class Parqueo extends \yii\db\ActiveRecord
             'id' => 'ID',
             'parqueo' => 'Parqueo',
             'torre_id' => 'Torre ID',
-            'residente_id' => 'Residente ID',
         ];
     }
 
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getResidente()
+    public function getTorre()
     {
-        return $this->hasOne(Torre::className(), ['id' => 'residente_id']);
+        return $this->hasOne(Torre::className(), ['id' => 'torre_id']);
     }
 
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getResidente0()
+    public function getResidenteParqueos()
     {
-        return $this->hasOne(Residente::className(), ['id' => 'residente_id']);
+        return $this->hasMany(ResidenteParqueo::className(), ['parqueo_id' => 'id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getResidentes()
+    {
+        return $this->hasMany(Residente::className(), ['id' => 'residente_id'])->viaTable('Residente_Parqueo', ['parqueo_id' => 'id']);
     }
 }
