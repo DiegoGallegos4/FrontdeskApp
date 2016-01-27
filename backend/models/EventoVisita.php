@@ -9,7 +9,9 @@ use Yii;
  *
  * @property integer $evento_id
  * @property integer $visita_id
- *
+ * @property datetime $hora_entrada
+ * @property datetime $hora_salida
+ * 
  * @property Visita $visita
  * @property Evento $evento
  */
@@ -29,7 +31,7 @@ class EventoVisita extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['evento_id', 'visita_id'], 'required'],
+            [['evento_id', 'visita_id','hora_entrada','hora_salida'], 'required'],
             [['evento_id', 'visita_id'], 'integer']
         ];
     }
@@ -40,8 +42,10 @@ class EventoVisita extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'evento_id' => 'Evento ID',
-            'visita_id' => 'Visita ID',
+            'evento_id' => 'Evento',
+            'visita_id' => 'Visita',
+            'hora_entrada' => 'Hora Entrada',
+            'hora_salida' => 'Hora Salida'
         ];
     }
 

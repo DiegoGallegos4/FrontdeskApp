@@ -89,3 +89,29 @@ a.desc:after {
     padding: 10px 20px;
     margin: 0 0 15px 0;
 }
+
+
+/*Start*/
+
+.navbar{
+    background-color: #2f3b4c
+}
+
+.thumbnail{
+    height: 180px;
+    padding-top: 80px;    
+}
+
+.row a{
+    background-color: #017d98;
+    color: white;
+    font-size: 1.5em;
+    border-radius: 15px;
+}
+
+.row{
+    margin-top: 50px;
+    display: flex;
+    align-items: center
+    
+}

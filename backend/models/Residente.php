@@ -75,12 +75,20 @@ class Residente extends \yii\db\ActiveRecord
         ];
     }
 
+    public function getResidenteBodegas(){
+        return $this->hasMany(ResidenteBodega::className(), ['residente_id' => 'id']);
+    }
     /**
      * @return \yii\db\ActiveQuery
      */
     public function getBodegas()
     {
-        return $this->hasMany(Bodega::className(), ['residente_id' => 'id']);
+        $arr_bodegas = $this->hasMany(Bodega::className(), ['id' => 'bodega_id'])->viaTable('Residente_Bodega', ['residente_id'=>'id'])->select(['*'])->asArray()->all();   
+        $bodegas = '';
+        foreach ($arr_bodegas as $bodega) {
+            $bodegas .= $bodega['bodega'].'<br>';
+        }
+        return $bodegas;
     }
 
     /**
@@ -88,7 +96,12 @@ class Residente extends \yii\db\ActiveRecord
      */
     public function getEmails()
     {
-        return $this->hasMany(Email::className(), ['residente_id' => 'id']);
+        $arr_emails = $this->hasMany(Email::className(), ['residente_id' => 'id'])->select(['*'])->asArray()->all();
+        $emails = '';
+        foreach ($arr_emails as $email) {
+            $emails .= $email['tipo'].': '.$email['email'].'<br>';
+        }
+        return $emails;
     }
 
     /**
@@ -96,7 +109,12 @@ class Residente extends \yii\db\ActiveRecord
      */
     public function getEmpleadoResidentes()
     {
-        return $this->hasMany(EmpleadoResidente::className(), ['residente_id' => 'id']);
+        $arr_empleados = $this->hasMany(EmpleadoResidente::className(), ['residente_id' => 'id'])->select(['*'])->asArray()->all();
+        $empleados = '';
+        foreach ($arr_empleados as $empleado) {
+            $empleados .= $empleado['posicion'].': '.$empleado['nombre'].' '.$empleado['apellido'].'<br>';
+        }
+        return $empleados;
     }
 
     /**
@@ -104,15 +122,25 @@ class Residente extends \yii\db\ActiveRecord
      */
     public function getEventos()
     {
-        return $this->hasMany(Evento::className(), ['residente_id' => 'id']);
+        $arr_eventos = $this->hasMany(Evento::className(), ['residente_id' => 'id'])->select(['*'])->asArray()->all();
+        $eventos = '';
+        foreach ($arr_eventos as $evento) {
+            $eventos .= $evento['nombre_evento'].'<br>';
+        }
+        return $eventos;
     }
 
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getFamiliars()
+    public function getFamiliares()
     {
-        return $this->hasMany(Familiar::className(), ['residente_id' => 'id']);
+        $arr_familiares = $this->hasMany(Familiar::className(), ['residente_id' => 'id'])->select(['*'])->asArray()->all();
+        $familiares = '';
+        foreach ($arr_familiares as $familiar) {
+            $familiares .= $familiar['relacion'].': '.$familiar['nombre'].' '.$familiar['apellido'].'<br>';
+        }
+        return $familiares;
     }
 
     /**
@@ -120,7 +148,12 @@ class Residente extends \yii\db\ActiveRecord
      */
     public function getLlamadas()
     {
-        return $this->hasMany(Llamada::className(), ['residente_id' => 'id']);
+        $arr_llamadas = $this->hasMany(Llamada::className(), ['residente_id' => 'id'])->select(['*'])->asArray()->all();
+        $llamadas = '';
+        foreach ($arr_llamadas as $llamada) {
+            $llamadas .= $llamada['relacion'].': '.$llamada['nombre'].' '.$llamada['apellido'].'<br>';
+        }
+        return $llamadas;
     }
 
     /**
@@ -138,13 +171,21 @@ class Residente extends \yii\db\ActiveRecord
     {
         return $this->hasMany(Paquete::className(), ['residente_id' => 'id']);
     }
-
+    
+    public function getResidenteParqueos(){
+        return $this->hasMany(ResidenteParqueo::className(),['residente_id' => 'id']);
+    }
     /**
      * @return \yii\db\ActiveQuery
      */
     public function getParqueos()
     {
-        return $this->hasMany(Parqueo::className(), ['residente_id' => 'id']);
+        $arr_parqueo = $this->hasMany(Parqueo::className(), ['id' => 'parqueo_id'])->viaTable('Residente_Parqueo', ['residente_id' => 'id'])->select(['*'])->asArray()->all();
+        $parqueos = '';
+        foreach ($arr_parqueo as $parqueo) {
+            $parqueos .= $parqueo['parqueo'].'<br>';
+        }
+        return $parqueos;
     }
 
     /**
@@ -174,7 +215,12 @@ class Residente extends \yii\db\ActiveRecord
      */
     public function getCondominios()
     {
-        return $this->hasMany(Condominio::className(), ['id' => 'condominio_id'])->viaTable('Residente_Condominio', ['residente_id' => 'id']);
+        $arr_condominios = $this->hasMany(Condominio::className(), ['id' => 'condominio_id'])->viaTable('Residente_Condominio', ['residente_id' => 'id'])->select(['*'])->asArray()->all();
+        $condominios = '';
+        foreach ($arr_condominios as $condominio) {
+            $condominios .= $condominio['condominio'].'<br>';
+        }
+        return $condominios;
     }
 
     /**

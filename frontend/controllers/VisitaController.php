@@ -4,6 +4,8 @@ namespace frontend\controllers;
 
 use Yii;
 use backend\models\Visita;
+use backend\models\EventoVisita;
+use backend\models\ResidenteVisita;
 use frontend\controllers\VisitaSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
@@ -60,13 +62,25 @@ class VisitaController extends Controller
      */
     public function actionCreate()
     {
-        $model = new Visita();
+        $Visita = new Visita();
+        $EventoVisita = new EventoVisita();
+        $ResidenteVisita = new ResidenteVisita();
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+        if ($Visita->load(Yii::$app->request->post()) && $Visita->save()) {
+            if($Visita->tipo == "Evento" && $EventoVisita->load(Yii::$app->request->post())){
+                $EventoVisita->visita_id = $Visita->id;
+                $EventoVisita->save();
+            }else{
+                $ResidenteVisita->load(Yii::$app->request->post());
+                $ResidenteVisita->visita_id = $Visita->id;
+                $ResidenteVisita->save();
+            }
+            return $this->redirect(['view', 'id' => $Visita->id]);
         } else {
             return $this->render('create', [
-                'model' => $model,
+                'model' => $Visita,
+                'EventoVisita' => $EventoVisita,
+                'ResidenteVisita' => $ResidenteVisita,
             ]);
         }
     }
@@ -80,12 +94,25 @@ class VisitaController extends Controller
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
-
+        $EventoVisita = EventoVisita::findOne(['visita_id' => $id]);
+        $ResidenteVisita = ResidenteVisita::findOne(['visita_id' => $id]);
+                
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+            if($model->tipo == 'Evento'){
+                if ($EventoVisita->load(Yii::$app->request->post()) && $EventoVisita->save()){
+                    return $this->redirect(['view', 'id' => $model->id]);
+                }
+            }else{
+                if ($ResidenteVisita->load(Yii::$app->request->post()) && $ResidenteVisita->save()){
+                    return $this->redirect(['view', 'id' => $model->id]);
+                }
+            }
+            
         } else {
             return $this->render('update', [
                 'model' => $model,
+                'EventoVisita' =>$EventoVisita,
+                'ResidenteVisita' => $ResidenteVisita,
             ]);
         }
     }

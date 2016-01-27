@@ -59,4 +59,8 @@ class Torre extends \yii\db\ActiveRecord
     {
         return $this->hasMany(Parqueo::className(), ['residente_id' => 'id']);
     }
+    
+    public function getAreasComunes(){
+        return $this->hasMany(AreaComun::className(), ['torre_id' => 'id']);
+    }
 }

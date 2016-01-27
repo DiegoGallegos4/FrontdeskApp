@@ -2,13 +2,18 @@
 
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
+use backend\models\Evento;
+use backend\models\Residente;
+use kartik\datetime\DateTimePicker;
 
 /* @var $this yii\web\View */
 /* @var $model backend\models\Visita */
+/* @var $model backend\models\ResidenteVisita */
+/* @var $model backend\models\EventoVisita */
 /* @var $form yii\widgets\ActiveForm */
 ?>
 
-<div class="visita-form">
+<div class="visita-form col-lg-4">
 
     <?php $form = ActiveForm::begin(); ?>
 
@@ -18,8 +23,49 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'identidad')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'tipo')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'tipo')->dropDownList(['Residente'=> 'Residente', 'Evento' => 'Evento']) ?>
+    
+    <?php if($model->tipo == "Evento" || $model->tipo == NULL): ?> 
+        <?= $form->field($EventoVisita,'evento_id')->dropDownList(Evento::find()->select(['nombre_evento','id'])->indexBy('id')->column()) ?>
 
+        <?= $form->field($EventoVisita,'hora_entrada')->widget(DateTimePicker::className(),[
+            'type' => DateTimePicker::TYPE_INPUT,
+            'pluginOptions' => [
+                'autoclose'=>true,
+                'format' => 'yyyy/mm/dd hh:ii'
+            ]
+        ]) ?> 
+
+        <?= $form->field($EventoVisita,'hora_salida')->widget(DateTimePicker::className(),[
+            'type' => DateTimePicker::TYPE_INPUT,
+            'pluginOptions' => [
+                'autoclose'=>true,
+                'format' => 'yyyy/mm/dd hh:ii'
+            ]
+        ]) ?> 
+    
+    <?php endif?>
+    
+    <?php if($model->tipo == "Residente" || $model->tipo == NULL): ?>
+        <?= $form->field($ResidenteVisita,'residente_id')->dropDownList(Residente::find()->select(['nombre_completo'])->indexBy('id')->column()) ?>
+
+        <?= $form->field($ResidenteVisita,'hora_entrada')->widget(DateTimePicker::className(),[
+            'type' => DateTimePicker::TYPE_INPUT,
+            'pluginOptions' => [
+                'autoclose'=>true,
+                'format' => 'yyyy/mm/dd hh:ii'
+            ]
+        ]) ?> 
+
+        <?= $form->field($ResidenteVisita,'hora_salida')->widget(DateTimePicker::className(),[
+            'type' => DateTimePicker::TYPE_INPUT,
+            'pluginOptions' => [
+                'autoclose'=>true,
+                'format' => 'yyyy/mm/dd hh:ii'
+            ]
+        ]) ?> 
+    <?php endif ?>
+    
     <div class="form-group">
         <?= Html::submitButton($model->isNewRecord ? 'Create' : 'Update', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
     </div>

@@ -4,19 +4,19 @@ use yii\helpers\Html;
 use yii\grid\GridView;
 
 /* @var $this yii\web\View */
-/* @var $searchModel frontend\controllers\ParqueoSearch */
+/* @var $searchModel frontend\controllers\ResidenteParqueoSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Parqueos';
+$this->title = 'Residente Parqueos';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="parqueo-index">
+<div class="residente-parqueo-index">
 
     <h1><?= Html::encode($this->title) ?></h1>
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <p>
-        <?= Html::a('Create Parqueo', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('Create Residente Parqueo', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
     <?= GridView::widget([
@@ -25,9 +25,8 @@ $this->params['breadcrumbs'][] = $this->title;
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 
-            'id',
-            'parqueo',
-            'torre_id',
+            'residente_id',
+            'parqueo_id',
 
             ['class' => 'yii\grid\ActionColumn'],
         ],

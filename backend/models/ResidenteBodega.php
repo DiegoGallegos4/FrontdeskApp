@@ -40,8 +40,8 @@ class ResidenteBodega extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'residente_id' => 'Residente ID',
-            'bodega_id' => 'Bodega ID',
+            'residente_id' => 'Residente',
+            'bodega_id' => 'Bodega',
         ];
     }
 

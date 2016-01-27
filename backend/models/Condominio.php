@@ -59,4 +59,12 @@ class Condominio extends \yii\db\ActiveRecord
     {
         return $this->hasMany(Residente::className(), ['id' => 'residente_id'])->viaTable('Residente_Condominio', ['condominio_id' => 'id']);
     }
+    
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getLlaves()
+    {
+        return $this->hasMany(Llave::className(), ['condo_id' => 'id']);
+    }
 }

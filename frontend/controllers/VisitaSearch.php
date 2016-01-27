@@ -19,7 +19,7 @@ class VisitaSearch extends Visita
     {
         return [
             [['id'], 'integer'],
-            [['nombre', 'apellido', 'identidad', 'tipo'], 'safe'],
+            [['nombre', 'apellido', 'identidad', 'tipo',], 'safe'],
         ];
     }
 
@@ -58,7 +58,8 @@ class VisitaSearch extends Visita
         $query->andFilterWhere([
             'id' => $this->id,
         ]);
-
+        
+        $query->joinWith('residentes');    
         $query->andFilterWhere(['like', 'nombre', $this->nombre])
             ->andFilterWhere(['like', 'apellido', $this->apellido])
             ->andFilterWhere(['like', 'identidad', $this->identidad])

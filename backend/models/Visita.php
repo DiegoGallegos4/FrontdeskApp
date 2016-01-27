@@ -72,7 +72,7 @@ class Visita extends \yii\db\ActiveRecord
      * @return \yii\db\ActiveQuery
      */
     public function getResidenteVisitas()
-    {
+    {  
         return $this->hasMany(ResidenteVisita::className(), ['visita_id' => 'id']);
     }
 
@@ -82,5 +82,10 @@ class Visita extends \yii\db\ActiveRecord
     public function getResidentes()
     {
         return $this->hasMany(Residente::className(), ['id' => 'residente_id'])->viaTable('Residente_Visita', ['visita_id' => 'id']);
+    }
+    
+    public function getResidenteName(){
+        $query = $this->getResidentes()->asArray()->all();
+        return $query[0]['nombre_completo'];
     }
 }

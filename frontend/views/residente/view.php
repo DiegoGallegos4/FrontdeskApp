@@ -27,7 +27,13 @@ $this->params['breadcrumbs'][] = $this->title;
             'hobbies',
             'empresa',
             ['label' => 'Telefonos', 'value' =>$model->telefonos,'format' => 'raw'],
-            ['label' => 'Preferencias', 'value' => $model->preferencias, 'format' => 'raw'] 
+            ['label' => 'Preferencias', 'value' => $model->preferencias, 'format' => 'raw'],
+            ['label' => 'Bodega', 'value' => $model->bodegas, 'format' => 'raw'],
+            ['label' => 'Parqueo', 'value' => $model->parqueos, 'format' => 'raw'],
+            ['label' => 'Condominio', 'value' => $model->condominios, 'format' => 'raw'],
+            ['label' => 'Empleados', 'value' => $model->empleadoResidentes,'format' => 'raw'],
+            ['label' => 'Familiares', 'value' => $model->familiares,'format' => 'raw'],
+            ['label' => 'Emails', 'value' => $model->emails,'format' => 'raw'],
         ],
     ]) 
         

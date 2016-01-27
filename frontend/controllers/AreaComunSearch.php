@@ -19,7 +19,7 @@ class AreaComunSearch extends AreaComun
     {
         return [
             [['id'], 'integer'],
-            [['nombre','descripcion'], 'safe'],
+            [['nombre','descripcion','torre_id'], 'safe'],
         ];
     }
 
@@ -54,13 +54,15 @@ class AreaComunSearch extends AreaComun
             // $query->where('0=1');
             return $dataProvider;
         }
-
+        
+        $query->joinWith('torre');
         $query->andFilterWhere([
             'id' => $this->id,
         ]);
 
         $query->andFilterWhere(['like', 'nombre', $this->nombre])
-              ->andFilterWhere(['like', 'descripcion', $this->descripcion]);
+              ->andFilterWhere(['like', 'descripcion', $this->descripcion])
+              ->andFilterWhere(['like', 'Torre.nombre', $this->torre_id])  ;
 
         return $dataProvider;
     }

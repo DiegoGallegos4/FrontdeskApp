@@ -9,6 +9,8 @@ use Yii;
  *
  * @property integer $residente_id
  * @property integer $visita_id
+ * @property datetime $hora_entrada
+ * @property datetime $hora_salida
  *
  * @property Visita $visita
  * @property Residente $residente
@@ -29,7 +31,7 @@ class ResidenteVisita extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['residente_id', 'visita_id'], 'required'],
+            [['residente_id', 'visita_id','hora_entrada','hora_salida'], 'required'],
             [['residente_id', 'visita_id'], 'integer']
         ];
     }
@@ -40,8 +42,10 @@ class ResidenteVisita extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'residente_id' => 'Residente ID',
+            'residente_id' => 'Residente',
             'visita_id' => 'Visita ID',
+            'hora_entrada' => 'Hora Entrada',
+            'hora_salida' => 'Hora Salida'
         ];
     }
 

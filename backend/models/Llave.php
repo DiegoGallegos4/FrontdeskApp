@@ -10,6 +10,7 @@ use Yii;
  * @property integer $id
  * @property string $lugar
  * @property integer $cantidad
+ * @property integer $condo_id
  */
 class Llave extends \yii\db\ActiveRecord
 {
@@ -27,7 +28,7 @@ class Llave extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['cantidad'], 'integer'],
+            [['cantidad','condo_id'], 'integer'],
             [['lugar'], 'string', 'max' => 255]
         ];
     }
@@ -41,6 +42,12 @@ class Llave extends \yii\db\ActiveRecord
             'id' => 'ID',
             'lugar' => 'Lugar',
             'cantidad' => 'Cantidad',
+            'condo_id' => 'Condominio',
         ];
+    }
+    
+    public function getCondo()
+    {
+        return $this->hasOne(Condominio::className(), ['id' => 'condo_id']);
     }
 }
