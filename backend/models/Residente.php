@@ -52,7 +52,8 @@ class Residente extends \yii\db\ActiveRecord
         return [
             [['fecha_nacimiento'], 'safe'],
             [['imagen'], 'string'],
-            [['nombre', 'apellido', 'estado_civil', 'nacionalidad', 'hobbies', 'empresa','nombre_completo'], 'string', 'max' => 255]
+            [['nombre', 'apellido', 'estado_civil', 'nacionalidad', 'hobbies', 'empresa','nombre_completo'], 'string', 'max' => 255],
+            [['nombre', 'apellido', 'estado_civil', 'nacionalidad', 'hobbies', 'empresa','nombre_completo'], 'required'],
         ];
     }
 

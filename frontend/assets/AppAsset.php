@@ -8,22 +8,26 @@
 namespace frontend\assets;
 
 use yii\web\AssetBundle;
-
+use yii\web\View;
 /**
  * @author Qiang Xue <qiang.xue@gmail.com>
  * @since 2.0
  */
 class AppAsset extends AssetBundle
 {
+    
+    
     public $basePath = '@webroot';
     public $baseUrl = '@web';
     public $css = [
         'css/site.css',
     ];
     public $js = [
+        'js/main.js',
     ];
     public $depends = [
-        'yii\web\YiiAsset',
-        'yii\bootstrap\BootstrapAsset',
+        //'yii\web\YiiAsset',
+        //'yii\bootstrap\BootstrapAsset',
+        //'\rmrevin\yii\fontawesome\AssetBundle',
     ];
 }

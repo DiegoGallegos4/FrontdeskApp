@@ -2,7 +2,7 @@
 
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
-use backend\models\Evento;
+use backend\models\Residente;
 use kartik\datetime\DateTimePicker;
 
 /* @var $this yii\web\View */
@@ -21,10 +21,10 @@ use kartik\datetime\DateTimePicker;
     <?= $form->field($model, 'apellido')->textInput(['maxlength' => true]) ?>
 
     <?= $form->field($model, 'identidad')->textInput(['maxlength' => true]) ?>
-    
-    <?= $form->field($EventoVisita,'evento_id')->dropDownList(Evento::find()->select(['nombre_evento','id'])->indexBy('id')->column()) ?>
+   
+    <?= $form->field($ResidenteVisita,'residente_id')->dropDownList(Residente::find()->select(['nombre_completo'])->indexBy('id')->column()) ?>
 
-    <?= $form->field($EventoVisita,'hora_entrada')->widget(DateTimePicker::className(),[
+    <?= $form->field($ResidenteVisita,'hora_entrada')->widget(DateTimePicker::className(),[
         'type' => DateTimePicker::TYPE_INPUT,
         'pluginOptions' => [
             'autoclose'=>true,
@@ -32,7 +32,7 @@ use kartik\datetime\DateTimePicker;
         ]
     ]) ?> 
 
-    <?= $form->field($EventoVisita,'hora_salida')->widget(DateTimePicker::className(),[
+    <?= $form->field($ResidenteVisita,'hora_salida')->widget(DateTimePicker::className(),[
         'type' => DateTimePicker::TYPE_INPUT,
         'pluginOptions' => [
             'autoclose'=>true,

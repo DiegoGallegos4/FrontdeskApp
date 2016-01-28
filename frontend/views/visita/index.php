@@ -2,7 +2,8 @@
 
 use yii\helpers\Html;
 use yii\grid\GridView;
-
+use yii\bootstrap\Modal;
+use yii\bootstrap\ButtonDropdown;
 /* @var $this yii\web\View */
 /* @var $searchModel frontend\controllers\VisitaSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
@@ -16,9 +17,20 @@ $this->params['breadcrumbs'][] = $this->title;
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <p>
-        <?= Html::a('Create Visita', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::button('Evento', ['class' => 'btn btn-success', 'id' => 'modalButtonCrear','value' => '/visita/create']) ?>
+        <?= Html::button('Residente', ['class' => 'btn btn-success', 'id' => 'modalButtonCrearVres','value' => '/visita/create-vres']) ?>
+        
     </p>
     
+    <?php 
+        Modal::begin([
+            'id' => 'modalCrear',
+        ]);
+        
+        echo "<div id='modalContent'></div>";
+        
+        Modal::end();
+    ?>
    
     <?= GridView::widget([
         'dataProvider' => $dataProvider,

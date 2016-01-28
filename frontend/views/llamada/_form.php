@@ -9,7 +9,7 @@ use backend\models\Residente;
 /* @var $form yii\widgets\ActiveForm */
 ?>
 
-<div class="llamada-form col-lg-4">
+<div class="llamada-form">
 
     <?php $form = ActiveForm::begin(); ?>
 

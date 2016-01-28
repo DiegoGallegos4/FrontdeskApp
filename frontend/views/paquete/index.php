@@ -2,6 +2,8 @@
 
 use yii\helpers\Html;
 use yii\grid\GridView;
+use yii\bootstrap\Modal;
+use yii\helpers\Url;
 
 /* @var $this yii\web\View */
 /* @var $searchModel frontend\controllers\PaqueteSearch */
@@ -16,8 +18,20 @@ $this->params['breadcrumbs'][] = $this->title;
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <p>
-        <?= Html::a('Create Paquete', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::button('Crear Paquete',['class' => 'btn btn-success', 
+                            'id' => "modalButtonCrear", 
+                            'value' => Url::to('/paquete/create')]) ?>
+            
     </p>
+    
+    <?php 
+        Modal::begin([
+            'id' => 'modalCrear',
+        ]);
+        
+        echo "<div id='modalContent'></div>";        
+        Modal::end(); 
+     ?>
 
     <?= GridView::widget([
         'dataProvider' => $dataProvider,

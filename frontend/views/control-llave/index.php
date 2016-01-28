@@ -2,12 +2,14 @@
 
 use yii\helpers\Html;
 use yii\grid\GridView;
+use yii\bootstrap\Modal;
+use yii\helpers\Url;
 
 /* @var $this yii\web\View */
 /* @var $searchModel frontend\controllers\ControlLlaveSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Control Llaves';
+$this->title = 'Control de Llaves';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="control-llave-index">
@@ -16,9 +18,34 @@ $this->params['breadcrumbs'][] = $this->title;
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <p>
-        <?= Html::a('Create Control Llave', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::button('Prestamo de Llave', ['class' => 'btn btn-success',
+                                                       'id' => 'modalButtonCrear',
+                                                        'value' => Url::to('/control-llave/create')]) ?>
+        <?= Html::button('Crear Llave', ['class' => 'btn btn-info',
+                                         'id' => 'modalButtonLlave',
+                                         'value' => Url::to('/llave/create')]); ?>
+        
+        <?php 
+            Modal::begin([
+                'id' => 'modalLlave',
+            ]);
+            
+            echo "<div id='modalContent'></div>";
+            Modal::end();        
+        ?>
+        
+        <?php 
+            Modal::begin([
+                'id' => 'modalCrear',
+            ]);
+            
+            echo "<div id='modalContent'></div>";
+            Modal::end();        
+        ?>
     </p>
-
+    
+    
+    
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,

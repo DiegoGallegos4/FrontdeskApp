@@ -6,7 +6,7 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model backend\models\Llamada */
 
-$this->title = 'Create Llamada';
+$this->title = 'Crear Llamada';
 $this->params['breadcrumbs'][] = ['label' => 'Llamadas', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>

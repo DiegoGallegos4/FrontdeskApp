@@ -64,22 +64,36 @@ class VisitaController extends Controller
     {
         $Visita = new Visita();
         $EventoVisita = new EventoVisita();
-        $ResidenteVisita = new ResidenteVisita();
+        
+        $Visita->tipo = 'Evento';
 
         if ($Visita->load(Yii::$app->request->post()) && $Visita->save()) {
-            if($Visita->tipo == "Evento" && $EventoVisita->load(Yii::$app->request->post())){
-                $EventoVisita->visita_id = $Visita->id;
-                $EventoVisita->save();
-            }else{
-                $ResidenteVisita->load(Yii::$app->request->post());
-                $ResidenteVisita->visita_id = $Visita->id;
-                $ResidenteVisita->save();
-            }
+            $EventoVisita->visita_id = $Visita->id;
+            $EventoVisita->save();
             return $this->redirect(['view', 'id' => $Visita->id]);
-        } else {
-            return $this->render('create', [
+        }else {
+            return $this->renderAjax('create', [
                 'model' => $Visita,
                 'EventoVisita' => $EventoVisita,
+            ]);
+        }
+    }
+    
+    public function actionCreateVres()
+    {
+        $Visita = new Visita();
+        $ResidenteVisita = new ResidenteVisita();
+        
+        $Visita->tipo = 'Residente';
+
+        if ($Visita->load(Yii::$app->request->post()) && $Visita->save()) {
+            $ResidenteVisita->load(Yii::$app->request->post());
+            $ResidenteVisita->visita_id = $Visita->id;
+            $ResidenteVisita->save();
+             return $this->redirect(['view', 'id' => $Visita->id]);
+        } else {
+            return $this->renderAjax('create-vres', [
+                'model' => $Visita,
                 'ResidenteVisita' => $ResidenteVisita,
             ]);
         }

@@ -6,7 +6,7 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model backend\models\Residente */
 
-$this->title = 'Create Residente';
+$this->title = 'Crear Residente';
 $this->params['breadcrumbs'][] = ['label' => 'Residentes', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>

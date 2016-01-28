@@ -6,7 +6,7 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model backend\models\ControlLlave */
 
-$this->title = 'Create Control Llave';
+$this->title = 'Prestamo de Llave';
 $this->params['breadcrumbs'][] = ['label' => 'Control Llaves', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>

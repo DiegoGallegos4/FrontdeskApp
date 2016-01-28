@@ -10,7 +10,7 @@ use kartik\datetime\DateTimePicker;
 /* @var $form yii\widgets\ActiveForm */
 ?>
 
-<div class="paquete-form col-lg-4">
+<div class="paquete-form">
 
     <?php $form = ActiveForm::begin(); ?>
 

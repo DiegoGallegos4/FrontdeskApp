@@ -2,13 +2,14 @@
 
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
+use backend\models\Condominio;
 
 /* @var $this yii\web\View */
 /* @var $model backend\models\Llave */
 /* @var $form yii\widgets\ActiveForm */
 ?>
 
-<div class="llave-form col-lg-4">
+<div class="llave-form">
 
     <?php $form = ActiveForm::begin(); ?>
 

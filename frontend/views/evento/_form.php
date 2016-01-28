@@ -11,7 +11,7 @@ use kartik\datetime\DateTimePicker;
 /* @var $form yii\widgets\ActiveForm */
 ?>
 
-<div class="evento-form col-lg-4">
+<div class="evento-form">
 
     <?php $form = ActiveForm::begin(); ?>
 

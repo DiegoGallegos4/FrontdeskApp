@@ -11,7 +11,7 @@ use kartik\datetime\DateTimePicker;
 /* @var $form yii\widgets\ActiveForm */
 ?>
 
-<div class="control-llave-form col-lg-4">
+<div class="control-llave-form ">
 
     <?php $form = ActiveForm::begin(); ?>
 
@@ -34,7 +34,7 @@ use kartik\datetime\DateTimePicker;
         ]
     ]) ?>
 
-    <?= $form->field($model, 'forma_autorizacion')->dropDownList(['Telefono' => 'Telefono','Mensaje' => 'Mensaje']) ?>
+    <?= $form->field($model, 'forma_autorizacion')->dropDownList(['Telefono' => 'Telefono','Mensaje' => 'Mensaje','NA' => 'NA']) ?>
 
     <?= $form->field($model, 'observaciones')->textarea() ?>
 

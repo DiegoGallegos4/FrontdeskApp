@@ -9,9 +9,9 @@ use yii\jui\DatePicker;
 /* @var $form yii\widgets\ActiveForm */
 ?>
 
-<div class="residente-form  col-lg-4">
+<div class="residente-form">
 
-    <?php $form = ActiveForm::begin(); ?>
+    <?php $form = ActiveForm::begin(['id'=>'nuevo-residente']); ?>
 
     <?= $form->field($model, 'nombre')->textInput(['maxlength' => true]) ?>
 
@@ -33,9 +33,20 @@ use yii\jui\DatePicker;
     <?= $form->field($model, 'empresa')->textInput(['maxlength' => true]) ?>
 
     <div class="form-group">
-        <?= Html::submitButton($model->isNewRecord ? 'Create' : 'Update', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
+        <?= Html::button($model->isNewRecord ? 'Create' : 'Update', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary','id' => 'crear']) ?>
     </div>
 
     <?php ActiveForm::end(); ?>
 
 </div>
+<?php 
+$form = <<<form
+        $('#nuevo-residente').submit(function(e){
+        console.log('hey!');
+        e.preventDefault();
+        e.stopPropagation();
+        });
+form;
+//$this->registerJs($form);
+
+?>

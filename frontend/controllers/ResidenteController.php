@@ -69,7 +69,7 @@ class ResidenteController extends Controller
             $model->nombre_completo = $model->nombre.' '.$model->apellido;
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
-            return $this->render('create', [
+            return $this->renderAjax('create', [
                 'model' => $model,
             ]);
         }
