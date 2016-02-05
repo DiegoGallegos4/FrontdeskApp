@@ -13,7 +13,7 @@ return [
     'controllerNamespace' => 'frontend\controllers',
     'components' => [
         'user' => [
-            'identityClass' => 'common\models\User',
+            'class' => 'amnah\yii2\user\components\User',
             'enableAutoLogin' => true,
         ],
         'log' => [

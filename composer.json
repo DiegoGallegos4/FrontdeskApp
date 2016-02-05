@@ -21,7 +21,12 @@
         "yiisoft/yii2-jui": "~2.0.0",
         "kartik-v/yii2-widget-datetimepicker": "*",
         "rmrevin/yii2-fontawesome": "2.10.*",
-        "components/font-awesome": "*"
+        "components/font-awesome": "*",
+        "philippfrenzel/yii2fullcalendar":"*",
+        "kartik-v/yii2-grid": "@dev",
+        "kartik-v/yii2-detail-view": "*",
+        "amnah/yii2-user": "^5.0",
+        "dektrium/yii2-rbac": "dev-master"
     },
     "require-dev": {
         "yiisoft/yii2-codeception": "*",

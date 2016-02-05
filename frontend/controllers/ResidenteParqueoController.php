@@ -63,10 +63,14 @@ class ResidenteParqueoController extends Controller
     {
         $model = new ResidenteParqueo();
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'residente_id' => $model->residente_id, 'parqueo_id' => $model->parqueo_id]);
+        if ($model->load(Yii::$app->request->post())) {
+            if($model->save()){
+                echo 1;
+            }else{
+                echo 0;
+            }
         } else {
-            return $this->render('create', [
+            return $this->renderAjax('create', [
                 'model' => $model,
             ]);
         }

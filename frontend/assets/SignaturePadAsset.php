@@ -19,16 +19,10 @@ class AppAsset extends AssetBundle
     
     public $basePath = '@webroot';
     public $baseUrl = '@web';
-    public $css = [
-        'css/site.css',
-    ];
     public $js = [
-        'js/main.js',
-        'js/signature_pad.min.js'
+        'js/signature.js',
     ];
     public $depends = [
-        'yii\web\YiiAsset',
-        'yii\bootstrap\BootstrapAsset',
-        '\rmrevin\yii\fontawesome\AssetBundle',
+        '\vendor\signature_pad\signature_pad.min.js',
     ];
 }

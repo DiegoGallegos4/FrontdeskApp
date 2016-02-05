@@ -4,6 +4,7 @@ use yii\helpers\Html;
 use yii\grid\GridView;
 use yii\helpers\Url;
 use yii\bootstrap\Modal;
+use yii\widgets\Pjax;
 
 /* @var $this yii\web\View */
 /* @var $searchModel frontend\controllers\EventoSearch */
@@ -30,22 +31,15 @@ $this->params['breadcrumbs'][] = $this->title;
         echo "<div id='modalContent'></div>";
         Modal::end();
     ?>
-
-    <?= GridView::widget([
-        'dataProvider' => $dataProvider,
-        'filterModel' => $searchModel,
-        'columns' => [
-            ['class' => 'yii\grid\SerialColumn'],
-
-            ['attribute'=> 'residente_id','value' => 'residente.nombre_completo','label' => 'Residente'],
-            'nombre_evento',
-            'fecha_inicio',
-            'fecha_fin',
-            // 'contrato',
-            ['attribute' => 'area_id','value' => 'area.nombre','label' => 'Area Comun'],
-
-            ['class' => 'yii\grid\ActionColumn'],
-        ],
-    ]); ?>
+    
+    <?php Pjax::begin() ?>
+    <?= \yii2fullcalendar\yii2fullcalendar::widget(array(
+        //'ajaxEvents'=> Url::to(['/evento/json-events']),
+        'options' => [
+            'lang' => 'es',
+        ]
+    )); ?>
+    <?php Pjax::end() ?>
+    
 
 </div>

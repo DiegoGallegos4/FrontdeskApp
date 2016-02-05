@@ -8,12 +8,15 @@ use frontend\controllers\PaqueteSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\helpers\Json;
 
 /**
  * PaqueteController implements the CRUD actions for Paquete model.
  */
 class PaqueteController extends Controller
 {
+    
+    
     public function behaviors()
     {
         return [
@@ -25,7 +28,7 @@ class PaqueteController extends Controller
             ],
         ];
     }
-
+    
     /**
      * Lists all Paquete models.
      * @return mixed
@@ -34,7 +37,7 @@ class PaqueteController extends Controller
     {
         $searchModel = new PaqueteSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
-
+        
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
@@ -61,9 +64,15 @@ class PaqueteController extends Controller
     public function actionCreate()
     {
         $model = new Paquete();
-
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+        $model->setScenario('update');
+        
+        if ($model->load(Yii::$app->request->post())) {
+            if($model->save()){
+                echo 1;
+            }else{
+                echo 0;
+            }
+            //return $this->redirect(['view', 'id' => $model->id]);
         } else {
             return $this->renderAjax('create', [
                 'model' => $model,
@@ -80,15 +89,35 @@ class PaqueteController extends Controller
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
-
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
-        } else {
-            return $this->render('update', [
-                'model' => $model,
-            ]);
+        
+        if(Yii::$app->request->post('firma') != NULL){
+            $model->setScenario('signature');
+            $data_pieces = explode(',',Yii::$app->request->post('firma'));
+            $model->firma = $data_pieces[1];
+            //$decoded_image = \base64_decode($encoded_image);
+            if($model->save()){               
+                echo 1;
+            }else{
+                echo 0;
+            }
+        }else{      
+            $model->setScenario('update');
+            if ($model->load(Yii::$app->request->post())){
+                if($model->save()){               
+                    echo 1;
+                }else{
+                    echo 0;
+                }
+            } else {
+                return $this->renderAjax('update', [
+                    'model' => $model,
+                    
+                ]);
+            }
         }
     }
+    
+    
 
     /**
      * Deletes an existing Paquete model.
@@ -102,7 +131,15 @@ class PaqueteController extends Controller
 
         return $this->redirect(['index']);
     }
-
+    
+    public function actionSignature($id){
+        $model = $this->findModel($id);
+        $response = \Yii::$app->getResponse();
+        $response->headers->set('Content-Type','image/png');
+        
+        return $this->renderAjax('signature',['model' => $model]);
+    }
+    
     /**
      * Finds the Paquete model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.

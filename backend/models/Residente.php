@@ -239,17 +239,16 @@ class Residente extends \yii\db\ActiveRecord
     {
         return $this->hasMany(Visita::className(), ['id' => 'visita_id'])->viaTable('Residente_Visita', ['residente_id' => 'id']);
     }
-
     /**
      * @return \yii\db\ActiveQuery
      */
     public function getTelefonos()
     {
-        $telefonos=$this->hasMany(Telefono::className(), ['residente_id' => 'id'])->select(['telefono','tipo'])->asArray()->all();
+        $telefonos=$this->hasMany(Telefono::className(), ['residente_id' => 'id'])->select(['*'])->asArray()->all();
              
         $n_telefonos='';
         foreach($telefonos as $telefono) {
-           $n_telefonos.= $telefono['tipo'].' : '.$telefono['telefono'].'<br>';
+           $n_telefonos.= '<div><a href="/telefono/'.$telefono['id'].'">'.$telefono['tipo'].' : '.$telefono['telefono'].'</a></div>';
         }
 
         return $n_telefonos;

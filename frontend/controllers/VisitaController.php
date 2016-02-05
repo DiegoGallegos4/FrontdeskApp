@@ -50,8 +50,11 @@ class VisitaController extends Controller
      */
     public function actionView($id)
     {
+        $model = $this->findModel($id);
+        
+        
         return $this->render('view', [
-            'model' => $this->findModel($id),
+            'model' => $model,
         ]);
     }
 
@@ -67,10 +70,16 @@ class VisitaController extends Controller
         
         $Visita->tipo = 'Evento';
 
-        if ($Visita->load(Yii::$app->request->post()) && $Visita->save()) {
-            $EventoVisita->visita_id = $Visita->id;
-            $EventoVisita->save();
-            return $this->redirect(['view', 'id' => $Visita->id]);
+        if ($Visita->load(Yii::$app->request->post())){
+            if($Visita->save()){
+                $EventoVisita->load(Yii::$app->request->post());
+                $EventoVisita->visita_id = $Visita->id;
+                $EventoVisita->save();
+                echo 1;
+            }else{
+                echo 0;
+            }            
+            //return $this->redirect(['view', 'id' => $Visita->id]);
         }else {
             return $this->renderAjax('create', [
                 'model' => $Visita,
@@ -86,11 +95,16 @@ class VisitaController extends Controller
         
         $Visita->tipo = 'Residente';
 
-        if ($Visita->load(Yii::$app->request->post()) && $Visita->save()) {
-            $ResidenteVisita->load(Yii::$app->request->post());
-            $ResidenteVisita->visita_id = $Visita->id;
-            $ResidenteVisita->save();
-             return $this->redirect(['view', 'id' => $Visita->id]);
+        if ($Visita->load(Yii::$app->request->post())) {
+            if($Visita->save()){
+                $ResidenteVisita->load(Yii::$app->request->post());
+                $ResidenteVisita->visita_id = $Visita->id;
+                $ResidenteVisita->save(); 
+                echo 1;
+            }else{
+                echo 0;
+            }
+            //return $this->redirect(['view', 'id' => $Visita->id]);
         } else {
             return $this->renderAjax('create-vres', [
                 'model' => $Visita,
@@ -110,27 +124,33 @@ class VisitaController extends Controller
         $model = $this->findModel($id);
         $EventoVisita = EventoVisita::findOne(['visita_id' => $id]);
         $ResidenteVisita = ResidenteVisita::findOne(['visita_id' => $id]);
-                
+        
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             if($model->tipo == 'Evento'){
-                if ($EventoVisita->load(Yii::$app->request->post()) && $EventoVisita->save()){
-                    return $this->redirect(['view', 'id' => $model->id]);
+                $EventoVisita->load(Yii::$app->request->post());
+                if($EventoVisita->save()){
+                    echo 1;
+                }else{
+                    echo 0;
                 }
             }else{
-                if ($ResidenteVisita->load(Yii::$app->request->post()) && $ResidenteVisita->save()){
-                    return $this->redirect(['view', 'id' => $model->id]);
+                $ResidenteVisita->load(Yii::$app->request->post());
+                if($ResidenteVisita->save()){
+                    echo 1;
+                }else{
+                    echo 0;
                 }
             }
-            
+            //return $this->redirect(['view', 'id' => $model->id]);
         } else {
-            return $this->render('update', [
+            return $this->renderAjax('update', [
                 'model' => $model,
                 'EventoVisita' =>$EventoVisita,
                 'ResidenteVisita' => $ResidenteVisita,
             ]);
         }
     }
-
+    
     /**
      * Deletes an existing Visita model.
      * If deletion is successful, the browser will be redirected to the 'index' page.

@@ -55,7 +55,7 @@ class ParqueoSearch extends Parqueo
             return $dataProvider;
         }
 
-        $query->joinWith('torre')
+        $query->joinWith('torre')->joinWith('residentes')
               ->andFilterWhere(['id' => $this->id,])
               ->andFilterWhere(['like', 'parqueo', $this->parqueo])
               ->andFilterWhere(['like', 'Torre.nombre', $this->torre_id]);

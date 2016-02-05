@@ -6,7 +6,7 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model backend\models\Parqueo */
 
-$this->title = 'Create Parqueo';
+$this->title = 'Crear Parqueo';
 $this->params['breadcrumbs'][] = ['label' => 'Parqueos', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>

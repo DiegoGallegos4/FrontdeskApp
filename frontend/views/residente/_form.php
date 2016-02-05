@@ -39,14 +39,3 @@ use yii\jui\DatePicker;
     <?php ActiveForm::end(); ?>
 
 </div>
-<?php 
-$form = <<<form
-        $('#nuevo-residente').submit(function(e){
-        console.log('hey!');
-        e.preventDefault();
-        e.stopPropagation();
-        });
-form;
-//$this->registerJs($form);
-
-?>

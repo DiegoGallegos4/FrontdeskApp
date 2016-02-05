@@ -26,7 +26,7 @@ class SiteController extends Controller
                         'allow' => true,
                     ],
                     [
-                        'actions' => ['logout', 'index','say'],
+                        'actions' => ['logout', 'index'],
                         'allow' => true,
                         'roles' => ['@'],
                     ],
@@ -81,7 +81,4 @@ class SiteController extends Controller
         return $this->goHome();
     }
 
-    public function actionSay($message = 'Hello'){
-        return $this->render('say', ['message'=> $message]);
-    }
 }

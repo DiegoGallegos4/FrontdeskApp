@@ -42,7 +42,7 @@ use kartik\datetime\DateTimePicker;
     <?= $form->field($model, 'area_id')->dropDownList(AreaComun::find()->select(['nombre','id'])->indexBy('id')->column()) ?>
 
     <div class="form-group">
-        <?= Html::submitButton($model->isNewRecord ? 'Create' : 'Update', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
+        <?= Html::button($model->isNewRecord ? 'Create' : 'Update', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary','id' => 'crear']) ?>
     </div>
 
     <?php ActiveForm::end(); ?>

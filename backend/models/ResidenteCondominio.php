@@ -40,8 +40,8 @@ class ResidenteCondominio extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'residente_id' => 'Residente ID',
-            'condominio_id' => 'Condominio ID',
+            'residente_id' => 'Residente',
+            'condominio_id' => 'Condominio',
         ];
     }
 

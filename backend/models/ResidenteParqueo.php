@@ -40,8 +40,8 @@ class ResidenteParqueo extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'residente_id' => 'Residente ID',
-            'parqueo_id' => 'Parqueo ID',
+            'residente_id' => 'Residente',
+            'parqueo_id' => 'Parqueo',
         ];
     }
 

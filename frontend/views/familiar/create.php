@@ -6,7 +6,7 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model backend\models\Familiar */
 
-$this->title = 'Create Familiar';
+$this->title = 'Crear Familiar';
 $this->params['breadcrumbs'][] = ['label' => 'Familiares', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>

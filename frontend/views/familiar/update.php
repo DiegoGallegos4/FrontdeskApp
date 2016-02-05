@@ -5,7 +5,7 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model backend\models\Familiar */
 
-$this->title = 'Update Familiar: ' . ' ' . $model->residente->nombre_completo;
+$this->title = 'Editar Familiar: ' . ' ' . $model->residente->nombre_completo;
 $this->params['breadcrumbs'][] = ['label' => 'Familiares', 'url' => ['index']];
 $this->params['breadcrumbs'][] = ['label' => $model->id, 'url' => ['view', 'id' => $model->id]];
 $this->params['breadcrumbs'][] = 'Update';

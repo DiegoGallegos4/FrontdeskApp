@@ -54,7 +54,8 @@ class CondominioSearch extends Condominio
             // $query->where('0=1');
             return $dataProvider;
         }
-
+        $query->joinWith('residentes');
+        
         $query->andFilterWhere([
             'id' => $this->id,
         ]);

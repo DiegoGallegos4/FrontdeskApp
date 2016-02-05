@@ -9,7 +9,7 @@ use backend\models\Residente;
 /* @var $form yii\widgets\ActiveForm */
 ?>
 
-<div class="empleado-residente-form col-lg-4">
+<div class="empleado-residente-form">
 
     <?php $form = ActiveForm::begin(); ?>
 
@@ -24,7 +24,7 @@ use backend\models\Residente;
     <?= $form->field($model, 'imagen')->textInput() ?>
 
     <div class="form-group">
-        <?= Html::submitButton($model->isNewRecord ? 'Create' : 'Update', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
+        <?= Html::button($model->isNewRecord ? 'Crear' : 'Editar', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary','id' => 'crear']) ?>
     </div>
 
     <?php ActiveForm::end(); ?>

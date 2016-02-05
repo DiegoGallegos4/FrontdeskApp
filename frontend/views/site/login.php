@@ -32,8 +32,19 @@ $this->params['breadcrumbs'][] = $this->title;
                 <div class="form-group">
                     <?= Html::submitButton('Login', ['class' => 'btn btn-primary', 'name' => 'login-button']) ?>
                 </div>
-
+                
             <?php ActiveForm::end(); ?>
         </div>
     </div>
+    <div id="signInButton">
+                    <span class="g-signin"
+                      data-scope="openid email"
+                      data-clientid="751482569922-jpkrg5rg37tmnpuqtbr6jaq4iqg6678h.apps.googleusercontent.com"
+                      data-redirecturi="postmessage"
+                      data-accesstype="offline"
+                      data-cookiepolicy="single_host_origin"
+                      data-callback="signInCallback"
+                      data-approvalprompt="force">
+                    </span>
+                </div>
 </div>

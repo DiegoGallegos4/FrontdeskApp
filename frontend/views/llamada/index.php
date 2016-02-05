@@ -4,6 +4,8 @@ use yii\helpers\Html;
 use yii\grid\GridView;
 use yii\helpers\Url;
 use yii\bootstrap\Modal;
+use yii\widgets\Pjax;
+
 /* @var $this yii\web\View */
 /* @var $searchModel frontend\controllers\LlamadaSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
@@ -30,6 +32,7 @@ $this->params['breadcrumbs'][] = $this->title;
         Modal::end();
     ?>
 
+    <?php Pjax::begin() ?>
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
@@ -40,8 +43,14 @@ $this->params['breadcrumbs'][] = $this->title;
             'nombre',
             'telefono',
             'mensaje',
-            ['class' => 'yii\grid\ActionColumn'],
+            ['class' => 'yii\grid\ActionColumn',
+             'buttons' => [
+                'update' => function($url,$model) {
+                   return Html::a('<span class="glyphicon glyphicon-pencil"></span>',$url,['class' => 'update']);
+                }, 
+               ]  
+            ],
         ],
     ]); ?>
-
+    <?php Pjax::end() ?>
 </div>

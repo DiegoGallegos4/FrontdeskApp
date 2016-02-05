@@ -10,7 +10,7 @@ use backend\models\Bodega;
 /* @var $form yii\widgets\ActiveForm */
 ?>
 
-<div class="residente-bodega-form col-lg-4">
+<div class="residente-bodega-form">
 
     <?php $form = ActiveForm::begin(); ?>
 
@@ -19,7 +19,7 @@ use backend\models\Bodega;
     <?= $form->field($model, 'bodega_id')->dropDownList(Bodega::find()->select(['bodega','id'])->indexBy('id')->column()) ?>
 
     <div class="form-group">
-        <?= Html::submitButton($model->isNewRecord ? 'Create' : 'Update', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
+        <?= Html::button($model->isNewRecord ? 'Crear' : 'Editar', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary','id' => 'crear'] ) ?>
     </div>
 
     <?php ActiveForm::end(); ?>

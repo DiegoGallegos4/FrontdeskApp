@@ -88,4 +88,25 @@ class Visita extends \yii\db\ActiveRecord
         $query = $this->getResidentes()->asArray()->all();
         return $query[0]['nombre_completo'];
     }
+    
+    public function getResidenteVisitaHoraEntrada(){
+        return $this->getResidenteVisitas()->asArray()->all()[0]['hora_entrada'];
+    }
+    
+    public function getResidenteVisitaHoraSalida(){
+        return $this->getResidenteVisitas()->asArray()->all()[0]['hora_salida'];
+    }
+    
+    public function getEventoName(){
+        return $this->getEventos()->asArray()->all()[0]['nombre_evento'];
+    }
+    
+    public function getEventoVisitaHoraEntrada(){
+        return $this->getEventoVisitas()->asArray()->all()[0]['hora_entrada'];
+    }
+    
+    public function getEventoVisitaHoraSalida(){
+        return $this->getEventoVisitas()->asArray()->all()[0]['hora_salida'];
+    }
+        
 }

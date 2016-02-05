@@ -2,6 +2,8 @@
 
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
+use backend\models\Residente;
+use backend\models\Condominio;
 
 /* @var $this yii\web\View */
 /* @var $model backend\models\ResidenteCondominio */
@@ -12,12 +14,12 @@ use yii\widgets\ActiveForm;
 
     <?php $form = ActiveForm::begin(); ?>
 
-    <?= $form->field($model, 'residente_id')->textInput() ?>
+    <?= $form->field($model, 'residente_id')->dropDownList(Residente::find()->select(['nombre_completo','id'])->indexBy('id')->column()) ?>
 
-    <?= $form->field($model, 'condominio_id')->textInput() ?>
+    <?= $form->field($model, 'condominio_id')->dropDownList(Condominio::find()->select(['condominio','id'])->indexBy('id')->column()) ?>
 
     <div class="form-group">
-        <?= Html::submitButton($model->isNewRecord ? 'Create' : 'Update', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
+        <?= Html::button($model->isNewRecord ? 'Crear' : 'Editar', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary','id' => 'crear']) ?>
     </div>
 
     <?php ActiveForm::end(); ?>

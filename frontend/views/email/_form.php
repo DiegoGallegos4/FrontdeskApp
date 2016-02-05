@@ -9,7 +9,7 @@ use backend\models\Residente;
 /* @var $form yii\widgets\ActiveForm */
 ?>
 
-<div class="email-form col-lg-4">
+<div class="email-form">
 
     <?php $form = ActiveForm::begin(); ?>
 

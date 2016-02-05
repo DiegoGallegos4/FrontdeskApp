@@ -16,14 +16,6 @@ use kartik\datetime\DateTimePicker;
 
     <?php $form = ActiveForm::begin(); ?>
 
-    <?= $form->field($model, 'nombre')->textInput(['maxlength' => true]) ?>
-
-    <?= $form->field($model, 'apellido')->textInput(['maxlength' => true]) ?>
-
-    <?= $form->field($model, 'identidad')->textInput(['maxlength' => true]) ?>
-   
-    <?= $form->field($ResidenteVisita,'residente_id')->dropDownList(Residente::find()->select(['nombre_completo'])->indexBy('id')->column()) ?>
-
     <?= $form->field($ResidenteVisita,'hora_entrada')->widget(DateTimePicker::className(),[
         'type' => DateTimePicker::TYPE_INPUT,
         'pluginOptions' => [
@@ -39,10 +31,20 @@ use kartik\datetime\DateTimePicker;
             'format' => 'yyyy/mm/dd hh:ii'
         ]
     ]) ?> 
-
     
+    <?= $form->field($ResidenteVisita,'residente_id')->dropDownList(Residente::find()->select(['nombre_completo'])->indexBy('id')->column()) ?>
+    
+    <?= $form->field($model, 'nombre')->textInput(['maxlength' => true]) ?>
+
+    <?= $form->field($model, 'apellido')->textInput(['maxlength' => true]) ?>
+
+    <?= $form->field($model, 'identidad')->textInput(['maxlength' => true]) ?>
+              
+    
+    
+
     <div class="form-group">
-        <?= Html::submitButton($model->isNewRecord ? 'Create' : 'Update', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
+        <?= Html::button($model->isNewRecord ? 'Create' : 'Update', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary','id' => 'crear']) ?>
     </div>
 
     <?php ActiveForm::end(); ?>

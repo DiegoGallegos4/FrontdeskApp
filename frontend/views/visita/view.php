@@ -24,24 +24,9 @@ $this->params['breadcrumbs'][] = $this->title;
             ],
         ]) ?>
     </p>
-    
-    <?php
-        $destino;
-        $hora_entrada;
-        $hora_salida;
-        
-        if($model->tipo == 'Residente'){
-            $destino = $model->residentes[0]->attributes['nombre_completo'];
-            $hora_entrada = $model->residenteVisitas[0]->attributes['hora_entrada'];
-            $hora_salida = $model->residenteVisitas[0]->attributes['hora_salida'];
-        } else{
-            $destino = $model->eventos[0]->attributes['nombre_evento'];
-            $hora_entrada = $model->eventoVisitas[0]->attributes['hora_entrada'];
-            $hora_salida = $model->eventoVisitas[0]->attributes['hora_salida'];
-            
-        }
-    ?>
 
+    <?php if ($model->tipo == 'Residente'){ ?> 
+    
     <?= DetailView::widget([
         'model' => $model,
         'attributes' => [
@@ -49,10 +34,27 @@ $this->params['breadcrumbs'][] = $this->title;
             'apellido',
             'identidad',
             'tipo',
-            ['label' => 'Destino', 'value' => $destino],
-            ['label' => 'Hora Entrada','value' => $hora_entrada],
-            ['label' => 'Hora Salida', 'value' => $hora_salida]
+            ['label' => 'Destino', 'value' => $model->getResidenteName()],
+            ['label' => 'Hora Entrada','value' => $model->getResidenteVisitaHoraEntrada()],
+            ['label' => 'Hora Salida', 'value' => $model->getResidenteVisitaHoraSalida()]
         ],
     ]) ?>
-
+    
+    <?php }else{?>
+    
+    <?= DetailView::widget([
+        'model' => $model,
+        'attributes' => [
+            'nombre',
+            'apellido',
+            'identidad',
+            'tipo',
+            ['label' => 'Destino', 'value' => $model->getEventoName()],
+            ['label' => 'Hora Entrada','value' => $model->getEventoVisitaHoraEntrada()],
+            ['label' => 'Hora Salida', 'value' => $model->getEventoVisitaHoraSalida()]
+        ],
+    ]) ?>
+    
+    <?php }?>
+    
 </div>

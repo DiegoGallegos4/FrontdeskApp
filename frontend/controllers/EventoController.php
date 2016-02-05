@@ -8,6 +8,7 @@ use frontend\controllers\EventoSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\helpers\Json;    
 
 /**
  * EventoController implements the CRUD actions for Evento model.
@@ -37,7 +38,7 @@ class EventoController extends Controller
 
         return $this->render('index', [
             'searchModel' => $searchModel,
-            'dataProvider' => $dataProvider,
+            'dataProvider' => $dataProvider
         ]);
     }
 
@@ -62,8 +63,13 @@ class EventoController extends Controller
     {
         $model = new Evento();
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+        if ($model->load(Yii::$app->request->post())) {
+            if($model->save()){
+                echo 2;
+            }else{
+                echo 0;
+            }
+            //return $this->redirect(['view', 'id' => $model->id]);
         } else {
             return $this->renderAjax('create', [
                 'model' => $model,
@@ -82,9 +88,14 @@ class EventoController extends Controller
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+            if($model->save()){
+                echo 2;
+            }else{
+                echo 0;
+            }
+            //return $this->redirect(['view', 'id' => $model->id]);
         } else {
-            return $this->render('update', [
+            return $this->renderAjax('update', [
                 'model' => $model,
             ]);
         }
@@ -103,6 +114,22 @@ class EventoController extends Controller
         return $this->redirect(['index']);
     }
 
+    
+    public function actionJson(){
+        $eventos = Evento::find()->all();
+        $events = array();
+        foreach ($eventos as $evento) {
+            $event = new \yii2fullcalendar\models\Event();
+            $event->id = $evento->id;
+            $event->title = $evento->nombre_evento;
+            $event->start = date('Y-m-d\TH:i:s\Z',strtotime($evento->fecha_inicio));
+            $event->end = date('Y-m-d\TH:m:i\Z',strtotime($evento->fecha_fin));
+            $events[] = $event;
+        }
+        
+        header('Content-type: application/json');
+        echo Json::encode($events);
+    }
     /**
      * Finds the Evento model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.

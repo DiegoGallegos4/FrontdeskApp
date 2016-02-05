@@ -27,7 +27,7 @@ class Llave extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['cantidad','condo_id'], 'integer'],
+            [['cantidad'], 'integer'],
             [['lugar'], 'string', 'max' => 255]
         ];
     }
@@ -41,7 +41,6 @@ class Llave extends \yii\db\ActiveRecord
             'id' => 'ID',
             'lugar' => 'Lugar',
             'cantidad' => 'Cantidad',
-            'condo_id' => 'Condominio',
         ];
     }
 }

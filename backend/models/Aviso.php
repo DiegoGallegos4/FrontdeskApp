@@ -30,7 +30,6 @@ class Aviso extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['user_id'], 'integer'],
             [['cuerpo', 'titulo'], 'string', 'max' => 255]
         ];
     }
@@ -42,17 +41,9 @@ class Aviso extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'user_id' => 'User ID',
             'cuerpo' => 'Cuerpo',
             'titulo' => 'Titulo',
         ];
     }
 
-    /**
-     * @return \yii\db\ActiveQuery
-     */
-    public function getUser()
-    {
-        return $this->hasOne(User::className(), ['id' => 'user_id']);
-    }
 }

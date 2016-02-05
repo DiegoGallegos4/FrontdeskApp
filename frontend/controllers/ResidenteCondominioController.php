@@ -63,10 +63,14 @@ class ResidenteCondominioController extends Controller
     {
         $model = new ResidenteCondominio();
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'residente_id' => $model->residente_id, 'condominio_id' => $model->condominio_id]);
+        if ($model->load(Yii::$app->request->post())) {
+            if($model->save()){
+                echo 1;
+            }else{
+                echo 0;
+            }
         } else {
-            return $this->render('create', [
+            return $this->renderAjax('create', [
                 'model' => $model,
             ]);
         }

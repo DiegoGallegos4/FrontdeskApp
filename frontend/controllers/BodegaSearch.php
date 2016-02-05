@@ -55,7 +55,7 @@ class BodegaSearch extends Bodega
             return $dataProvider;
         }
         
-        $query->joinWith('torre')
+        $query->joinWith('torre')->joinWith('residentes')
               ->andFilterWhere(['id' => $this->id,])
               ->andFilterWhere(['like', 'bodega', $this->bodega])
               ->andFilterWhere(['like','Torre.nombre', $this->torre_id]);

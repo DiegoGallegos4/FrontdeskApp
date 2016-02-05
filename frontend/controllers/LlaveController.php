@@ -62,8 +62,13 @@ class LlaveController extends Controller
     {
         $model = new Llave();
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+        if ($model->load(Yii::$app->request->post()) ){
+            if($model->save()){
+                echo 2;
+            }else{
+                echo 0;
+            }
+            //return $this->redirect(['view', 'id' => $model->id]);
         } else {
             return $this->renderAjax('create', [
                 'model' => $model,

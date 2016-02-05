@@ -4,6 +4,7 @@ use yii\helpers\Html;
 use yii\grid\GridView;
 use yii\bootstrap\Modal;
 use yii\helpers\Url;
+use yii\widgets\Pjax;
 
 /* @var $this yii\web\View */
 /* @var $searchModel frontend\controllers\PaqueteSearch */
@@ -33,6 +34,7 @@ $this->params['breadcrumbs'][] = $this->title;
         Modal::end(); 
      ?>
 
+    <?php Pjax::begin() ?>
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
@@ -44,8 +46,19 @@ $this->params['breadcrumbs'][] = $this->title;
             'fecha',
             'entregado_por',
             'observaciones',
-            ['class' => 'yii\grid\ActionColumn'],
+            ['class' => 'yii\grid\ActionColumn',
+             'template' => '{view} {update} {delete} {signature}',
+             'buttons' => [
+                'signature' => function($url, $model){
+                    return Html::a('<span class="glyphicon glyphicon-ok"></span>',$url,['class' => 'signature']); 
+                },
+                'update' => function($url,$model){
+                    return Html::a('<span class="glyphicon glyphicon-pencil"></span>',$url,['class' => 'update']);
+                },
+             ]   
+            ],
         ],
     ]); ?>
+    <?php Pjax::end() ?>
 
 </div>

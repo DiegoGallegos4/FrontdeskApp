@@ -4,6 +4,7 @@ use yii\helpers\Html;
 use yii\grid\GridView;
 use yii\bootstrap\Modal;
 use yii\helpers\Url;
+use yii\widgets\Pjax;   
 
 /* @var $this yii\web\View */
 /* @var $searchModel frontend\controllers\ResidenteSearch */
@@ -19,8 +20,11 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <p>
         <?= Html::button('Crear Residente', ['class' => 'btn btn-success', 'id' => 'modalButtonCrear','value' => Url::to('/residente/create') ]) ?>
+        <?= Html::a('Cumpleaños', ['calendar'],['class' => 'btn btn-info']) ?>
     </p>
     
+    <p id="success-create" class="bg-success text-center">Residente creado Exitosamente</p> 
+
     <?php 
         Modal::begin([
             'id' => 'modalCrear',
@@ -29,23 +33,33 @@ $this->params['breadcrumbs'][] = $this->title;
         echo '<div id="modalContent"></div>';
         Modal::end();
     ?>
+    
+    <div>
+    <?php Pjax::begin(); ?>
+        <?= GridView::widget([
+            'dataProvider' => $dataProvider,
+            'filterModel' => $searchModel,
+            'columns' => [
+                ['class' => 'yii\grid\SerialColumn'],
 
-    <?= GridView::widget([
-        'dataProvider' => $dataProvider,
-        'filterModel' => $searchModel,
-        'columns' => [
-            ['class' => 'yii\grid\SerialColumn'],
+                'nombre_completo',
+                'fecha_nacimiento',
+                'estado_civil',
+                // 'imagen',
+                // 'nacionalidad',
+                // 'hobbies',
+                // 'empresa',
 
-            'nombre_completo',
-            'fecha_nacimiento',
-            'estado_civil',
-            // 'imagen',
-            // 'nacionalidad',
-            // 'hobbies',
-            // 'empresa',
-
-            ['class' => 'yii\grid\ActionColumn'],
-        ],
-    ]); ?>
+                ['class' => 'yii\grid\ActionColumn',
+                 'buttons' => [
+                     'update' => function($url,$model) {
+                        return Html::a('<span class="glyphicon glyphicon-pencil"></span>',$url,['class' => 'update']);
+                     }, 
+                    ]
+                ],
+            ],
+        ]); ?>
+    <?php Pjax::end(); ?>
+     </div>
 
 </div>
